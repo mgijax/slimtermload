@@ -1,0 +1,37 @@
+#format: sh
+#
+#  common.config.default
+#
+#  This file sets up environment variables that are needed for 
+#  all Vocabulary Abbreviation loadS
+#
+###########################################################################
+
+###########################################################################
+#
+#  GENERAL SETTINGS
+#
+###########################################################################
+
+#
+#  If the MGICONFIG environment variable does not have a local override,
+#  use the default "live" settings.
+#
+if [ "${MGICONFIG}" = "" ]
+then
+    MGICONFIG=/usr/local/mgi/live/mgiconfig
+    export MGICONFIG
+fi
+
+. ${MGICONFIG}/master.config.sh
+
+# Full path to QC scripts.
+#
+LOAD_QC=${VOCABBREVLOAD}/bin/slimQC.py
+LOAD_QC_SH=${VOCABBREVLOAD}/bin/slimQC.sh
+
+export VOCABBREVLOAD_QC VOCABBREVLOAD_QC_SH
+
+INSTALLDIR=${VOCABBREVLOAD}
+
+export INSTALLDIR
