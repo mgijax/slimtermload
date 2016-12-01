@@ -6,7 +6,7 @@
 # A copy of this script is intended to reside in /usr/local/bin on all
 # servers to make it available in the common PATH.
 #
-# Its allows someone to publish a new MP vocabulary abbreviation input file
+# It allows someone to publish a new MP slim term input file
 # to the directory where the loader will look for it.
 #
 ###########################################################################
@@ -21,17 +21,18 @@ usage ()
 
 CURRENT_DIR=`pwd`
 
-LOADDIR=/usr/local/mgi/live/dataload/vocabbrevload
-CONFIG_COMMON=${LOADDIR}/va_common.config
+LOADDIR=/usr/local/mgi/live/dataload/slimtermload
+LOADDIR=/home/sc/work/dataload/slimtermload
+CONFIG_COMMON=${LOADDIR}/common.config
 CONFIG=${LOADDIR}/mpslimload.config
 
 #
-# The vocabbrevload product is not installed on all servers, so make sure
+# The slim term load product is not installed on all servers, so make sure
 # it exists on this one.
 #
 if [ ! -d ${LOADDIR} ]
 then
-    echo "The vocabulary abbreviation load software does not exist on this server"
+    echo "The slim term load software does not exist on this server"
     exit 1
 fi
 
