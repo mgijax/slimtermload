@@ -121,7 +121,7 @@ fi
 echo "" >> ${LOG_DIAG}
 date >> ${LOG_DIAG}
 echo "Run QC checks"  | tee -a ${LOG_DIAG}
-${VOCABBREVLOAD}/bin/slimQC.sh ${CONFIG} ${INPUT_FILE_DEFAULT} live
+${SLIMTERMLOAD}/bin/slimQC.sh ${CONFIG} ${INPUT_FILE_DEFAULT} live
 STAT=$?
 
 if [ ${STAT} -eq 1 ]
