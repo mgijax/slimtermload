@@ -6,21 +6,22 @@
 # A copy of this script is intended to reside in /usr/local/bin on all
 # servers to make it available in the common PATH.
 #
-# Its allows someone to run the rv QC reports without having
+# Its allows someone to run the emap QC reports without having
 # to provide the full path to where the wrapper script is installed.
 #
 ###########################################################################
 
 usage ()
 {
-    echo "Usage: vaQC input_file"
+    echo "Usage: runEmapSlimQC input_file"
     echo "       where"
     echo "           input_file = path to the EMAP Slim input file"
     exit 1
 }
 
-LOADDIR=/usr/local/mgi/live/dataload/vocabbrevload
-WRAPPER=${LOADDIR}/bin/vaQC.sh
+#LOADDIR=/usr/local/mgi/live/dataload/slimtermload
+LOADDIR=/home/sc/work/dataload/slimtermload
+WRAPPER=${LOADDIR}/bin/slimQC.sh
 CONFIG=emapslimload.config
 #echo ${CONFIG}
 #
@@ -29,7 +30,7 @@ CONFIG=emapslimload.config
 #
 if [ ! -d ${LOADDIR} ]
 then
-    echo "The vocabbrevload software does not exist on this server"; exit 1
+    echo "The slimtermload software does not exist on this server"; exit 1
 fi
 
 #

@@ -1,16 +1,15 @@
 #!/usr/local/bin/python
 #
-#  vaQC.py
+#  slimQC.py
 ###########################################################################
 #
 #  Purpose:
 #
-#	This script will generate a QC report for vocabulary 
-#	    abbreviation file
+#	This script will generate a QC report for the slim term file
 #
 #  Usage:
 #
-#      vaQC.py  filename
+#      slimQC.py  filename
 #
 #      where:
 #          filename = path to the input file
@@ -27,7 +26,7 @@
 #	Columns:
 #	1. termID
 #	2. term
-#	3. abbreviation
+#	3. abbreviation (optional)
 #
 #  Outputs:
 #
@@ -71,7 +70,7 @@ db.setAutoTranslateBE(False)
 TAB = '\t'
 CRT = '\n'
 
-USAGE = 'Usage: vaQC.py  inputFile'
+USAGE = 'Usage: slimQC.py  inputFile'
 
 #
 #  GLOBALS
@@ -98,17 +97,9 @@ obsoleteTermList = []
 
 # vocabulary we are adding abbreviations to
 vocabKey = os.environ['VOCAB_KEY']
-
+print vocabKey
 # term ID lookup {termId:term, ...}
 termIdLookup = {}
-
-# lines to write to the sql file
-sqlLineList = []
-
-# sql update template
-sqlTemplate = '''update VOC_Term
-		set abbreviation = '%s', sequenceNum = %s
-		where _Term_key = %s;\n'''
 
 # 1 if QC errors
 hasQcErrors = 0
@@ -212,7 +203,7 @@ def openFiles ():
 #
 def runQcChecks ():
 
-    global hasQcErrors, sqlLineList
+    global hasQcErrors
 
     #
     # parse the obo file into a data structure
@@ -220,18 +211,22 @@ def runQcChecks ():
     lineCt = 0
     for line in fpInfile.readlines():
 	lineCt += 1
-	line = string.strip(line)
         tokens = string.split(line, TAB)
+
+	# now strip line for reporting purposes
+	line = string.strip(line)
 	#print tokens
 	#print 'len tokens: %s' % len(tokens)
 	if len(tokens) < 3:
 	    hasQcErrors = 1
 	    invalidRowList.append('%s: %s%s' % (lineCt, line, CRT))
 	    continue
-        termId = tokens[0]
-	term = tokens[1]
-	abbrev = tokens[2]
-	if termId == '' or term == '' or abbrev == '':
+	# abbrev can be blank, so don't strip until after tokenization or
+	# a QC error will be reported for <3 columns
+        termId = string.strip(tokens[0])
+	term = string.strip(tokens[1])
+	abbrev = string.strip(tokens[2])
+	if termId == '' or term == '':
 	    hasQcErrors = 1
             invalidRowList.append('%s: %s%s' % (lineCt, line, CRT))
         if not termIdLookup.has_key(termId):
@@ -247,11 +242,6 @@ def runQcChecks ():
 	    if termObject.isObsolete:
 		hasQcErrors = 1
 		obsoleteTermList.append('%s: %s%s' % (lineCt, line, CRT))
-	    # add to sql file list. I know ... some may have QC errors
-	    # later we'll check for QC errors before writing this list
-	    # to a file
-	    sql = sqlTemplate % (abbrev, lineCt, dbTermKey)
-	    sqlLineList.append(sql)
     if hasQcErrors:
 	if len(invalidRowList):
 	    fpQcRpt.write('\nInput lines with missing data or < 3 columns:\n')
@@ -291,17 +281,6 @@ def closeFiles ():
     fpQcRpt.close()
     return
 
-def createSqlFile ():
-    global sqlFile
-
-    fpSqlFile = open(sqlFile, 'w')
-    # update abbreviation and sequenceNum to null for all terms in this vocab
-    fpSqlFile.write('''update VOC_Term
-                set abbreviation = null, sequenceNum = null
-                where _Vocab_key = %s\n;''' % vocabKey)
-    for line in sqlLineList:
-       fpSqlFile.write(line)
-    fpSqlFile.close()
 #
 # Main
 #
@@ -312,6 +291,4 @@ closeFiles()
 if hasQcErrors == 1 : 
     sys.exit(2)
 else:
-    createSqlFile()
     sys.exit(0)
-

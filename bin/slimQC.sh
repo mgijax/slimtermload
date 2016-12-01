@@ -20,7 +20,7 @@
 #      See the configuration file
 #
 #  Inputs:
-#	VA input file
+#	slim term input file
 #
 #  Outputs:
 #
@@ -72,7 +72,7 @@ LIVE_RUN=0; export LIVE_RUN
 # argument is given, that means that the output files are located in the
 # /data/loads/... directory, not in the current directory.
 #
-CONFIG_COMMON=`cd ${BINDIR}/..; pwd`/va_common.config
+CONFIG_COMMON=`cd ${BINDIR}/..; pwd`/common.config
 . ${CONFIG_COMMON}
 
 echo "$1 $2"
@@ -140,7 +140,7 @@ echo "" >> ${LOG}
 date >> ${LOG}
 echo "Run QC checks on the input file" >> ${LOG}
 
-${VALOAD_QC}  ${INPUT_FILE}
+${LOAD_QC}  ${INPUT_FILE}
 STAT=$?
 if [ ${STAT} -eq 1 ]
 then
