@@ -1,0 +1,19 @@
+#!/bin/csh -f
+
+#
+# default configuration file
+#
+
+source ${SETLOAD}/Configuration
+
+setenv SETMODE		load
+#setenv SETMODE		preview
+setenv LOADDIR          /data/loads/sc/mgi/slimtermload/goslimload
+setenv SETOUTPUTDIR     ${LOADDIR}/output
+setenv SETDATADIR       ${LOADDIR}/input
+setenv SETINPUTFILE	${SETDATADIR}/goslimload.txt
+setenv SETLOG		${SETDATADIR}/goslimload.log
+setenv SETNAME		"GO Slim"
+setenv SETTYPE		"Vocabulary Term"
+setenv CREATEDBY	mdolan
+
