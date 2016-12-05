@@ -1,16 +1,16 @@
 #!/bin/sh
 #
-#  vaQC.sh
+#  slimQC.sh
 ###########################################################################
 #
 #  Purpose:
 #
 #      This script is a wrapper around the process that does QC
-#      checks for the  vocabulary abbreviation load
+#      checks for the  slim term load
 #
 #  Usage:
 #
-#      vaQC.sh  configfile filename  
+#      slimQC.sh  configfile filename  
 #
 #      where
 #          filename = full path to the input file
@@ -45,7 +45,7 @@
 #      ) Validate & source the configuration files to establish the environment.
 #      ) Verify that the input file exists.
 #      ) Initialize the log and report files.
-#      ) Call vaQC.py to generate the QC report.
+#      ) Call slimQC.py to generate the QC report.
 #
 #  Notes:  None
 #
@@ -56,13 +56,13 @@
 #  Date        SE   Change Description
 #  ----------  ---  -------------------------------------------------------
 #
-#  07/2/2014  sc  Initial development
+#  11/5/2016  sc  Initial development
 #
 ###########################################################################
 CURRENTDIR=`pwd`
 BINDIR=`dirname $0`
 
-USAGE='Usage: vaQC.sh  configfile filename'
+USAGE='Usage: slimQC.sh  configfile filename'
 
 # this is a QC check only run, set LIVE_RUN accordingly
 LIVE_RUN=0; export LIVE_RUN
@@ -153,6 +153,7 @@ if [ ${STAT} -eq 2 ]
 then
     echo "QC errors detected. See ${QC_RPT}" | tee -a ${LOG}
     echo "" | tee -a ${LOG}
+    exit ${STAT}
 else
     echo "No QC errors detected."
 fi

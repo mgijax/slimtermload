@@ -22,11 +22,11 @@
 #          QC_RPT
 #	   
 #  Inputs:
-# 	vocabulary abbreviation input file
+# 	slim term input file
 #	Columns:
 #	1. termID
-#	2. term
-#	3. abbreviation (optional)
+#	2. slim term (optional)
+#	3. vocabulary term
 #
 #  Outputs:
 #
@@ -92,9 +92,9 @@ invalidRowList = []
 # lines in the input whose terms are obsolete in the database
 obsoleteTermList = []
 
-# vocabulary we are adding abbreviations to
+# vocabulary we are creating slim terms for
 vocabKey = os.environ['VOCAB_KEY']
-print vocabKey
+
 # term ID lookup {termId:term, ...}
 termIdLookup = {}
 
@@ -208,21 +208,18 @@ def runQcChecks ():
     lineCt = 0
     for line in fpInfile.readlines():
 	lineCt += 1
+	line = string.strip(line)
         tokens = string.split(line, TAB)
 
-	# now strip line for reporting purposes
-	line = string.strip(line)
 	#print tokens
 	#print 'len tokens: %s' % len(tokens)
 	if len(tokens) < 3:
 	    hasQcErrors = 1
 	    invalidRowList.append('%s: %s%s' % (lineCt, line, CRT))
 	    continue
-	# abbrev can be blank, so don't strip until after tokenization or
-	# a QC error will be reported for <3 columns
-        termId = string.strip(tokens[0])
-	term = string.strip(tokens[1])
-	abbrev = string.strip(tokens[2])
+        termId = tokens[0]
+	slim = tokens[1]
+	term = tokens[2]
 	if termId == '' or term == '':
 	    hasQcErrors = 1
             invalidRowList.append('%s: %s%s' % (lineCt, line, CRT))
