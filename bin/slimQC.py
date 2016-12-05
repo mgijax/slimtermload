@@ -79,9 +79,6 @@ USAGE = 'Usage: slimQC.py  inputFile'
 # Report file name
 qcRptFile = os.environ['QC_RPT']
 
-# SQL update file name
-sqlFile = os.environ['UPDATE_SQL']
-
 # lines from the input where ID is not in the database
 invalidIDList = []
 

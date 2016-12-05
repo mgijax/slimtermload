@@ -48,11 +48,10 @@ VOCAB_KEY=5
 
 export VOCAB_KEY
 
-#
-# Update sql file
-UPDATE_SQL=${OUTPUTDIR}/update.sql
+# setload config file
+SETLOAD_CONFIG=${INSTALLDIR}/mpsetload.config
 
-export UPDATE_SQL
+export SETLOAD_CONFIG
 
 # Complete path name of the MP slim load log files
 LOG_FILE=${LOGDIR}/mpslimload.log

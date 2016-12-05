@@ -142,21 +142,9 @@ then
 fi
 
 #
-# Do Updates
+# Reload Slim Term Set
 #
-# check for empty file
-# get password from password file
-# execute sql file
-
-if [ -s "${UPDATE_SQL}" ]
-then
-    echo "" >> ${LOG_DIAG}
-    date >> ${LOG_DIAG}
-    echo 'Updating vocabulary abbreviations'  >> ${LOG_DIAG}
-    psql -U${MGD_DBUSER} -h${MGD_DBSERVER} -d${MGD_DBNAME} -f ${UPDATE_SQL} -e >> ${LOG_DIAG} 2>&1
-
-
-fi
+${SETLOAD}/setload.csh ${SETLOAD_CONFIG}
 
 #
 # Archive a copy of the input file, adding a timestamp suffix.
