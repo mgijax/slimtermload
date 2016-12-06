@@ -49,7 +49,7 @@ VOCAB_KEY=4
 export VOCAB_KEY
 
 # setload config file
-SETLOAD_CONFIG=${INSTALLDIR}/mpsetload.config
+SETLOAD_CONFIG=${INSTALLDIR}/gosetload.config
 
 export SETLOAD_CONFIG
 
