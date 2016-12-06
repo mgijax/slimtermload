@@ -12,7 +12,7 @@ setenv LOADDIR          /data/loads/mgi/slimtermload/mpslimload
 setenv SETOUTPUTDIR     ${LOADDIR}/output
 setenv SETDATADIR       ${LOADDIR}/input
 setenv SETINPUTFILE	${SETDATADIR}/mpslimload.txt
-setenv SETLOG		${SETDATADIR}/mpslimload.log
+setenv SETLOG		${SETDATADIR}/mpsetload.log
 setenv SETNAME		"MP Slim"
 setenv SETTYPE		"Vocabulary Term"
 setenv CREATEDBY	csmith

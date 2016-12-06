@@ -12,7 +12,7 @@ setenv LOADDIR          /data/loads/mgi/slimtermload/goslimload
 setenv SETOUTPUTDIR     ${LOADDIR}/output
 setenv SETDATADIR       ${LOADDIR}/input
 setenv SETINPUTFILE	${SETDATADIR}/goslimload.txt
-setenv SETLOG		${SETDATADIR}/goslimload.log
+setenv SETLOG		${SETDATADIR}/gosetload.log
 setenv SETNAME		"GO Slim"
 setenv SETTYPE		"Vocabulary Term"
 setenv CREATEDBY	mdolan
