@@ -8,7 +8,7 @@ source ${SETLOAD}/Configuration
 
 setenv SETMODE		load
 #setenv SETMODE		preview
-setenv LOADDIR          /data/loads/sc/mgi/slimtermload/goslimload
+setenv LOADDIR          /data/loads/mgi/slimtermload/goslimload
 setenv SETOUTPUTDIR     ${LOADDIR}/output
 setenv SETDATADIR       ${LOADDIR}/input
 setenv SETINPUTFILE	${SETDATADIR}/goslimload.txt

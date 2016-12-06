@@ -144,6 +144,7 @@ fi
 #
 # Reload Slim Term Set
 #
+echo "Run Set Load"  | tee -a ${LOG_DIAG}
 ${SETLOAD}/setload.csh ${SETLOAD_CONFIG}
 
 #
