@@ -75,16 +75,13 @@ LIVE_RUN=0; export LIVE_RUN
 CONFIG_COMMON=`cd ${BINDIR}/..; pwd`/common.config
 . ${CONFIG_COMMON}
 
-echo "$1 $2"
 if [ $# -eq 2 ]
 then
     CONFIG=`cd ${BINDIR}/..; pwd`/$1
-    #echo "CONFIG=${CONFIG}"
     INPUT_FILE=$2
 elif [ $# -eq 3 -a "$3" = "live" ]
 then
     CONFIG=`cd ${BINDIR}/..; pwd`/$1
-    echo "CONFIG=${CONFIG}"
     INPUT_FILE=$2
     LIVE_RUN=1
 else
