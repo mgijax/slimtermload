@@ -1,8 +1,10 @@
-TAG: slimermload-6-0-11-1
+TAG: slimtermload-6-0-11-2
+TAG: slimtermload-6-0-11-1
 DATE: 03/08/2018
 STAFF: sc
 CHANGES: TR12172 - gearing up to finish this
-  change path in the run* scripts use LOADDIR
+  change path in the config files to use LOADDIR
+  change path in run* scripts to /usr/local/mgi/live
 
 TAG: slimermload-6-0-7-1
 DATE: 01/05/2017
