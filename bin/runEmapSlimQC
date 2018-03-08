@@ -19,8 +19,7 @@ usage ()
     exit 1
 }
 
-#LOADDIR=/usr/local/mgi/live/dataload/slimtermload
-LOADDIR=/home/sc/work/dataload/slimtermload
+LOADDIR=/usr/local/mgi/live/dataload/slimtermload
 WRAPPER=${LOADDIR}/bin/slimQC.sh
 CONFIG=emapslimload.config
 #echo ${CONFIG}
