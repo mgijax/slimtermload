@@ -22,7 +22,7 @@ usage ()
 CURRENT_DIR=`pwd`
 
 LOADDIR=/usr/local/mgi/live/dataload/slimtermload
-LOADDIR=/home/sc/work/dataload/slimtermload
+
 CONFIG_COMMON=${LOADDIR}/common.config
 CONFIG=${LOADDIR}/mpslimload.config
 

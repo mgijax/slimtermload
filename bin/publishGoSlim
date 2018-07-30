@@ -21,8 +21,8 @@ usage ()
 
 CURRENT_DIR=`pwd`
 
-#LOADDIR=/usr/local/mgi/live/dataload/slimtermload
-LOADDIR=/home/sc/work/dataload/slimtermload
+LOADDIR=/usr/local/mgi/live/dataload/slimtermload
+
 CONFIG_COMMON=${LOADDIR}/common.config
 CONFIG=${LOADDIR}/goslimload.config
 
