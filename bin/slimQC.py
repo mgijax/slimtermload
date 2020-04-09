@@ -1,4 +1,3 @@
-#!/usr/local/bin/python
 #
 #  slimQC.py
 ###########################################################################
@@ -56,7 +55,6 @@
 
 import sys
 import os
-import string
 import re
 import mgi_utils
 import db
@@ -112,7 +110,7 @@ class Term:
         self.term = None
         self.ID = None
         self.isObsolete = None
-	self.termKey = None
+        self.termKey = None
 
 #
 # Purpose: Validate the arguments to the script.
@@ -125,7 +123,7 @@ def checkArgs ():
     global inputFile
 
     if len(sys.argv) != 2:
-        print USAGE
+        print(USAGE)
         sys.exit(1)
 
     inputFile = sys.argv[1]
@@ -145,19 +143,19 @@ def init ():
     
     # load lookups
     results = db.sql('''select a.accid, t.term, t.isObsolete, t._Term_key
-	from ACC_Accession a, VOC_Term t
-	where t._Vocab_key = %s
-	and t._Term_key = a._Object_key
-	and a._MGIType_key = 13''' % vocabKey, 'auto')
+        from ACC_Accession a, VOC_Term t
+        where t._Vocab_key = %s
+        and t._Term_key = a._Object_key
+        and a._MGIType_key = 13''' % vocabKey, 'auto')
 
     for r in results:
-	id = r['accid']
-	t = Term()
-	t.term = r['term']
-	t.ID = id
-	t.isObsolete = r['isObsolete']
-	t.termKey = r['_Term_key']
-	termIdLookup[id] = t
+        id = r['accid']
+        t = Term()
+        t.term = r['term']
+        t.ID = id
+        t.isObsolete = r['isObsolete']
+        t.termKey = r['_Term_key']
+        termIdLookup[id] = t
 
     return
 
@@ -178,13 +176,13 @@ def openFiles ():
     try:
         fpInfile = open(inputFile, 'r')
     except:
-        print 'Cannot open input file: %s' % inputFile
+        print('Cannot open input file: %s' % inputFile)
         sys.exit(1)
 
     try:
         fpQcRpt = open(qcRptFile, 'w')
     except:
-        print 'Cannot open report file: %s' % qcRptFile
+        print('Cannot open report file: %s' % qcRptFile)
         sys.exit(1)
 
     return
@@ -204,61 +202,61 @@ def runQcChecks ():
     #
     lineCt = 0
     for line in fpInfile.readlines():
-	lineCt += 1
-	line = string.strip(line)
-        tokens = string.split(line, TAB)
+        lineCt += 1
+        line = str.strip(line)
+        tokens = str.split(line, TAB)
 
-	#print tokens
-	#print 'len tokens: %s' % len(tokens)
-	if len(tokens) < 3:
-	    hasQcErrors = 1
-	    invalidRowList.append('%s: %s%s' % (lineCt, line, CRT))
-	    continue
-        termId = tokens[0]
-	slim = tokens[1]
-	term = tokens[2]
-	if termId == '' or term == '':
-	    hasQcErrors = 1
+        #print tokens
+        #print 'len tokens: %s' % len(tokens)
+        if len(tokens) < 3:
+            hasQcErrors = 1
             invalidRowList.append('%s: %s%s' % (lineCt, line, CRT))
-        if not termIdLookup.has_key(termId):
-	    hasQcErrors = 1
-	    invalidIDList.append('%s: %s%s' % (lineCt, line, CRT))
-	else:
-	    termObject =  termIdLookup[termId]
-	    dbTerm = termObject.term
-	    dbTermKey = termObject.termKey
-	    if dbTerm != term:
-		hasQcErrors = 1
-		invalidTermList.append('%s: %s dbTerm: "%s"%s' % (lineCt, line, dbTerm, CRT))
-	    if termObject.isObsolete:
-		hasQcErrors = 1
-		obsoleteTermList.append('%s: %s%s' % (lineCt, line, CRT))
+            continue
+        termId = tokens[0]
+        slim = tokens[1]
+        term = tokens[2]
+        if termId == '' or term == '':
+            hasQcErrors = 1
+            invalidRowList.append('%s: %s%s' % (lineCt, line, CRT))
+        if termId not in termIdLookup:
+            hasQcErrors = 1
+            invalidIDList.append('%s: %s%s' % (lineCt, line, CRT))
+        else:
+            termObject =  termIdLookup[termId]
+            dbTerm = termObject.term
+            dbTermKey = termObject.termKey
+            if dbTerm != term:
+                hasQcErrors = 1
+                invalidTermList.append('%s: %s dbTerm: "%s"%s' % (lineCt, line, dbTerm, CRT))
+            if termObject.isObsolete:
+                hasQcErrors = 1
+                obsoleteTermList.append('%s: %s%s' % (lineCt, line, CRT))
     if hasQcErrors:
-	if len(invalidRowList):
-	    fpQcRpt.write('\nInput lines with missing data or < 3 columns:\n')
-	    fpQcRpt.write('-----------------------------\n')
-	    for line in invalidRowList:
-		fpQcRpt.write(line)
-	    fpQcRpt.write('\n')
-	if len(invalidIDList):
-	    fpQcRpt.write('\nInput lines with invalid IDs:\n')
-            fpQcRpt.write('------------------------\n') 
-	    for line in invalidIDList:
+        if len(invalidRowList):
+            fpQcRpt.write('\nInput lines with missing data or < 3 columns:\n')
+            fpQcRpt.write('-----------------------------\n')
+            for line in invalidRowList:
                 fpQcRpt.write(line)
-	    fpQcRpt.write('\n')
-	if len(invalidTermList):
-	    fpQcRpt.write('\nInput lines where term does not match the ID in the database:\n')
+            fpQcRpt.write('\n')
+        if len(invalidIDList):
+            fpQcRpt.write('\nInput lines with invalid IDs:\n')
+            fpQcRpt.write('------------------------\n') 
+            for line in invalidIDList:
+                fpQcRpt.write(line)
+            fpQcRpt.write('\n')
+        if len(invalidTermList):
+            fpQcRpt.write('\nInput lines where term does not match the ID in the database:\n')
             fpQcRpt.write('-------------------------------------------------------------\n')
             for line in invalidTermList:
                 fpQcRpt.write(line)
-	    fpQcRpt.write('\n')
-	if len(obsoleteTermList):
-	    fpQcRpt.write('\nInput lines where term is obsolete in the database:\n')
+            fpQcRpt.write('\n')
+        if len(obsoleteTermList):
+            fpQcRpt.write('\nInput lines where term is obsolete in the database:\n')
             fpQcRpt.write('---------------------------------------------------\n')
             for line in obsoleteTermList:
                 fpQcRpt.write(line)
     return
-	
+        
 #
 # Purpose: Close the files.
 # Returns: Nothing
