@@ -2,8 +2,7 @@
 #
 #  goslimload.config.default
 #
-#  This file sets up environment variables that are needed for 
-#  the GO SLIM load
+#  This file sets up environment variables that are needed for the GO SLIM load
 #
 ###########################################################################
 
@@ -20,37 +19,31 @@ LOGDIR=${FILEDIR}/logs
 RPTDIR=${FILEDIR}/reports
 OUTPUTDIR=${FILEDIR}/output
 INPUTDIR=${FILEDIR}/input
-
 export FILEDIR ARCHIVEDIR LOGDIR RPTDIR OUTPUTDIR INPUTDIR
 
 # Full path to the default input file.
 # This is where the publish script places the file
 INPUT_FILE_DEFAULT=${INPUTDIR}/goslimload.txt
-
 export INPUT_FILE_DEFAULT
 
 #
 # Full path to the  QC log.
 #
 QC_LOGFILE=${LOGDIR}/goslimQC.log
-
 export QC_LOGFILE 
 
 # Full path to the QC reports.
 #
 QC_RPT=${RPTDIR}/qc.rpt
-
 export QC_RPT
 
 # The vocabulary we are loading slim terms for
 #
 VOCAB_KEY=4
-
 export VOCAB_KEY
 
 # setload config file
 SETLOAD_CONFIG=${INSTALLDIR}/gosetload.config
-
 export SETLOAD_CONFIG
 
 # Complete path name of the GO slim load log files
@@ -59,12 +52,10 @@ LOG_PROC=${LOGDIR}/goslimload.proc.log
 LOG_DIAG=${LOGDIR}/goslimload.diag.log
 LOG_CUR=${LOGDIR}/goslimload.cur.log
 LOG_VAL=${LOGDIR}/goslimload.val.log
-
 export LOG_FILE LOG_PROC LOG_DIAG LOG_CUR LOG_VAL
 
 #  The name of the job stream for the load
 JOBSTREAM=goslimload
-
 export JOBSTREAM
 
 ###########################################################################
@@ -75,5 +66,4 @@ export JOBSTREAM
 
 #  The name of the load for the subject of an email notification
 MAIL_LOADNAME="GO Slim Load"
-
 export MAIL_LOADNAME 

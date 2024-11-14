@@ -5,8 +5,23 @@
 #       • type 1 synonyms used for labels on the HMDC
 #       • type 2 synonyms used for labels on allele summary pages (http://www.informatics.jax.org/allele/summary?markerId=MGI:105043)
 #       • the mpslimload is used for on ribbons on the gene page (http://www.informatics.jax.org/marker/MGI:105043)
-#       The slimload also specifies which MP headers should appear in the ribbon. The slim set leaves out “phenotype not analyzed” and “normal phenotype”.
+#       The slimload also specifies which MP headers should appear in the ribbon. 
+#       The slim set leaves out “phenotype not analyzed” and “normal phenotype”.
 #
+
+TAG: slimtermload-6-0-24-?
+DATE: 11/13/2024
+STAFF: lec
+CHANGES: 
+added Cell Type Slim
+        modified:   HISTORY
+        modified:   Install
+        modified:   index.html
+        bin/publishCellTypeSlim
+        bin/runCellTypeSlimQC
+        bin/slimtermload.log
+        celltypesetload.config.default
+        celltypeslimload.config.default
 
 TAG: slimtermload-6-0-16-1
 DATE: 08/21/2020

@@ -1,8 +1,8 @@
 #format: sh
 #
-#  emapslimload.config.default
+#  celltypeslimload.config.default
 #
-#  This file sets up environment variables that are needed for the EMAP SLIM load
+#  This file sets up environment variables that are needed for the Cell Type Slim
 #
 ###########################################################################
 
@@ -13,7 +13,7 @@
 ###########################################################################
 
 #  Path name of the archive, logs, reports and output directories
-FILEDIR=${DATALOADSOUTPUT}/mgi/slimtermload/emapslimload
+FILEDIR=${DATALOADSOUTPUT}/mgi/slimtermload/celltypeslimload
 ARCHIVEDIR=${FILEDIR}/archive
 LOGDIR=${FILEDIR}/logs
 RPTDIR=${FILEDIR}/reports
@@ -23,13 +23,13 @@ export FILEDIR ARCHIVEDIR LOGDIR RPTDIR OUTPUTDIR INPUTDIR
 
 # Full path to the default input file.
 # This is where the publish script places the file
-INPUT_FILE_DEFAULT=${INPUTDIR}/emapslimload.txt
+INPUT_FILE_DEFAULT=${INPUTDIR}/celltypeslimload.txt
 export INPUT_FILE_DEFAULT
 
 #
 # Full path to the  QC log.
 #
-QC_LOGFILE=${LOGDIR}/emapslimQC.log
+QC_LOGFILE=${LOGDIR}/celltypeslimQC.log
 export QC_LOGFILE 
 
 # Full path to the QC reports.
@@ -39,23 +39,23 @@ export QC_RPT
 
 # The vocabulary we are loading slim terms for
 #
-VOCAB_KEY=90
+VOCAB_KEY=102
 export VOCAB_KEY
 
 # setload config file
-SETLOAD_CONFIG=${INSTALLDIR}/emapsetload.config
+SETLOAD_CONFIG=${INSTALLDIR}/celltypesetload.config
 export SETLOAD_CONFIG
 
-# Complete path name of the EMAP slim load log files
-LOG_FILE=${LOGDIR}/emapslimload.log
-LOG_PROC=${LOGDIR}/emapslimload.proc.log
-LOG_DIAG=${LOGDIR}/emapslimload.diag.log
-LOG_CUR=${LOGDIR}/emapslimload.cur.log
-LOG_VAL=${LOGDIR}/emapslimload.val.log
+# Complete path name of the slim load log files
+LOG_FILE=${LOGDIR}/celltypeslimload.log
+LOG_PROC=${LOGDIR}/celltypeslimload.proc.log
+LOG_DIAG=${LOGDIR}/celltypeslimload.diag.log
+LOG_CUR=${LOGDIR}/celltypeslimload.cur.log
+LOG_VAL=${LOGDIR}/celltypeslimload.val.log
 export LOG_FILE LOG_PROC LOG_DIAG LOG_CUR LOG_VAL
 
 #  The name of the job stream for the load
-JOBSTREAM=emapslimload
+JOBSTREAM=celltypeslimload
 export JOBSTREAM
 
 ###########################################################################
@@ -65,5 +65,5 @@ export JOBSTREAM
 ###########################################################################
 
 #  The name of the load for the subject of an email notification
-MAIL_LOADNAME="EMAP Slim Term Load"
+MAIL_LOADNAME="Cell Type Slim Load"
 export MAIL_LOADNAME 

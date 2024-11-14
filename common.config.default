@@ -2,8 +2,7 @@
 #
 #  common.config.default
 #
-#  This file sets up environment variables that are needed for 
-#  all Vocabulary Abbreviation loadS
+#  This file sets up environment variables that are needed for all Vocabulary loads
 #
 ###########################################################################
 
@@ -29,9 +28,7 @@ fi
 #
 LOAD_QC=${SLIMTERMLOAD}/bin/slimQC.py
 LOAD_QC_SH=${SLIMTERMLOAD}/bin/slimQC.sh
-
 export LOAD_QC LOAD_QC_SH
 
 INSTALLDIR=${SLIMTERMLOAD}
-
 export INSTALLDIR

@@ -8,12 +8,12 @@ source ${SETLOAD}/Configuration
 
 setenv SETMODE		load
 #setenv SETMODE		preview
-setenv LOADDIR          ${DATALOADSOUTPUT}/mgi/slimtermload/goslimload
+setenv LOADDIR          ${DATALOADSOUTPUT}/mgi/slimtermload/celltypeslimload
 setenv SETOUTPUTDIR     ${LOADDIR}/output
 setenv SETDATADIR       ${LOADDIR}/input
-setenv SETINPUTFILE	${SETDATADIR}/goslimload.txt
-setenv SETLOG		${SETDATADIR}/gosetload.log
-setenv SETNAME		"GO Slim"
+setenv SETINPUTFILE	${SETDATADIR}/celltypeslimload.txt
+setenv SETLOG		${SETDATADIR}/celltypesetload.log
+setenv SETNAME		"Cell Type Slim"
 setenv SETTYPE		"Vocabulary Term"
-setenv CREATEDBY	ln
+setenv CREATEDBY	terryh
 
