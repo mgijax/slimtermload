@@ -9,8 +9,7 @@ Usage=Install
 cd `dirname $0`
 
 COMMON_CONFIG=common.config
-PROVIDER_CONFIGS="emapslimload.config goslimload.config mpslimload.config"
-
+PROVIDER_CONFIGS="emapslimload.config goslimload.config mpslimload.config celltypeslimload.config"
 
 #
 #  Function called when the install fails.
@@ -123,7 +122,7 @@ if [ -d ${DEPLOY_PATH} ]; then
         # deployment errors are non-fatal, as they can occur regularly in an
         # SE's development area
 
-        for file in runEmapSlimQC publishEmapSlim runGoSlimQC publishGoSlim runMpSlimQC publishMpSlim
+        for file in runEmapSlimQC publishEmapSlim runGoSlimQC publishGoSlim runMpSlimQC publishMpSlim runCellTypeSlimQC publishCellTypeSlim
         do
                 cp bin/${file} ${DEPLOY_PATH}
                 if [ $? -ne 0 ]; then

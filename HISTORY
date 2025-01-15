@@ -9,11 +9,11 @@
 #       The slim set leaves out “phenotype not analyzed” and “normal phenotype”.
 #
 
-TAG: slimtermload-6-0-24-?
-DATE: 11/13/2024
+TAG: slimtermload-6-0-25-1
+DATE: 01/15/2025
 STAFF: lec
 CHANGES: 
-added Cell Type Slim
+e4g/added Cell Type Slim
         modified:   HISTORY
         modified:   Install
         modified:   index.html
